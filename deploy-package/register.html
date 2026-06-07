@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회원가입 · 투자자의 회상</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">R</span>
+        <span>투자자의 회상</span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="index.html#auth">로그인</a>
+        <a href="register.html">회원가입</a>
+        <a href="index.html#public">공개 글</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section auth-section register-page" aria-labelledby="register-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Join Reminiscence</p>
+            <h1 id="register-title">회원가입</h1>
+          </div>
+          <a class="button secondary" href="index.html#auth">로그인으로 돌아가기</a>
+        </div>
+
+        <div class="auth-grid login-only">
+          <form class="auth-card" id="registerForm">
+            <h3>새 계정 만들기</h3>
+            <label>
+              이름
+              <input id="registerName" type="text" autocomplete="name" required />
+            </label>
+            <label>
+              이메일
+              <input id="registerEmail" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              비밀번호
+              <input id="registerPassword" type="password" autocomplete="new-password" minlength="8" required />
+            </label>
+            <button class="button primary" type="submit">가입하고 시작하기</button>
+            <p class="status" id="registerStatus" role="status"></p>
+          </form>
+
+          <aside class="auth-card auth-side">
+            <h3>가입하면 가능한 것</h3>
+            <p>나의 투자 회고를 저장하고, 공개 기록과 비공개 기록을 분리해서 관리할 수 있습니다.</p>
+            <p>다른 사용자는 공개로 게시한 회고만 볼 수 있습니다.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="index.html">사이트로 돌아가기</a>
+      <span>투자자의 회상은 로그인 후 작성할 수 있습니다.</span>
+    </footer>
+
+    <script src="register.js"></script>
+  </body>
+</html>

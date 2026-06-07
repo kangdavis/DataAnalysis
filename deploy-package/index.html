@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>투자자의 회상</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="홈으로 이동">
+        <span class="brand-mark">R</span>
+        <span>투자자의 회상</span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#public">공개 글</a>
+        <a href="#write">글쓰기</a>
+        <a href="#library">내 글</a>
+        <a href="#auth">로그인</a>
+        <a href="register.html">회원가입</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-visual" aria-hidden="true">
+          <div class="ticker-strip">
+            <span>Investor Memoir</span>
+            <span>Decision Review</span>
+            <span>Market Memory</span>
+            <span>Trading Journal</span>
+          </div>
+          <svg class="chart-line" viewBox="0 0 900 360">
+            <path d="M30 270 C120 210 150 250 230 188 S370 150 450 176 S590 238 685 126 S800 92 870 55" />
+            <circle cx="870" cy="55" r="8" />
+          </svg>
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">Investor's Reminiscence</p>
+          <h1 id="hero-title">투자자의 판단과 시간을 회상하는 기록실</h1>
+          <p>
+            지나간 판단을 다시 읽고, 흔들렸던 시장과 나의 생각을 함께 남깁니다.
+            기업분석, 산업분석, 매매일지를 기록하며 다음 결정을 더 차분하게 준비하세요.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#write">글쓰기</a>
+            <a class="button secondary" href="#public">공개 글 보기</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section auth-section" id="auth" aria-labelledby="auth-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h2 id="auth-title">계정</h2>
+          </div>
+          <div class="user-chip" id="userChip">로그인이 필요합니다</div>
+        </div>
+
+        <div class="auth-grid login-only">
+          <form class="auth-card" id="loginForm">
+            <h3>로그인</h3>
+            <label>
+              이메일
+              <input id="loginEmail" type="email" autocomplete="email" required />
+            </label>
+            <label>
+              비밀번호
+              <input id="loginPassword" type="password" autocomplete="current-password" required />
+            </label>
+            <button class="button primary" type="submit">로그인</button>
+          </form>
+
+          <aside class="auth-card auth-side">
+            <h3>처음 방문했나요?</h3>
+            <p>회원가입 후 글을 작성하고, 공개 글과 비공개 글을 직접 관리할 수 있습니다.</p>
+            <a class="button secondary" href="register.html">회원가입으로 이동</a>
+          </aside>
+        </div>
+
+        <div class="session-bar" id="sessionBar" hidden>
+          <span id="sessionText"></span>
+          <button class="button secondary" id="logoutButton" type="button">로그아웃</button>
+        </div>
+        <p class="status" id="authStatus" role="status"></p>
+      </section>
+
+      <section class="section dashboard" aria-label="사이트 현황">
+        <article class="metric">
+          <span>공개 글</span>
+          <strong id="publicCount">0</strong>
+        </article>
+        <article class="metric">
+          <span>내 글</span>
+          <strong id="myCount">0</strong>
+        </article>
+        <article class="metric">
+          <span>최근 수정</span>
+          <strong id="lastUpdated">-</strong>
+        </article>
+      </section>
+
+      <section class="section library-section" id="public" aria-labelledby="public-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Public</p>
+            <h2 id="public-title">공개 글</h2>
+          </div>
+          <button class="button secondary" id="refreshButton" type="button">새로고침</button>
+        </div>
+
+        <div class="filters">
+          <input id="publicSearch" type="search" placeholder="제목, 본문, 티커 검색" />
+          <select id="publicCategory">
+            <option value="all">전체 분류</option>
+            <option>기업분석</option>
+            <option>산업분석</option>
+            <option>매매일지</option>
+          </select>
+          <select id="publicStance">
+            <option value="all">전체 결론</option>
+            <option>관찰</option>
+            <option>긍정</option>
+            <option>중립</option>
+            <option>부정</option>
+            <option>보류</option>
+          </select>
+        </div>
+
+        <div class="post-list" id="publicList"></div>
+        <article class="reader" id="publicReader"></article>
+      </section>
+
+      <section class="section workspace" id="write" aria-labelledby="write-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Write</p>
+            <h2 id="write-title">글쓰기</h2>
+          </div>
+          <button class="button ghost" id="newPostButton" type="button">새 글</button>
+        </div>
+
+        <form class="editor tistory-editor" id="postForm">
+          <input type="hidden" id="postId" />
+          <div class="editor-shell">
+            <div class="writing-pane">
+              <input class="title-input" id="title" type="text" placeholder="제목을 입력하세요" required />
+              <div class="editor-toolbar" aria-label="본문 편집 도구">
+                <button type="button" data-insert="## " title="소제목">H2</button>
+                <button type="button" data-wrap="**" title="굵게">B</button>
+                <button type="button" data-wrap="*" title="기울임">I</button>
+                <button type="button" data-insert="- " title="목록">List</button>
+                <button type="button" data-insert="> " title="인용">Quote</button>
+                <button type="button" data-insert="\n---\n" title="구분선">Line</button>
+              </div>
+
+              <label class="editor-field body-field">
+                본문
+                <textarea id="body" rows="18" placeholder="본문을 작성하세요. 숫자, 근거, 생각의 변화, 체크해야 할 지표를 차분히 정리해보세요."></textarea>
+              </label>
+
+              <label class="editor-field">
+                리스크와 체크포인트
+                <textarea id="risks" rows="5" placeholder="틀릴 수 있는 이유, 다음에 확인할 데이터, 매매 기준을 적어보세요."></textarea>
+              </label>
+            </div>
+
+            <aside class="publish-panel" aria-label="발행 설정">
+              <h3>발행 설정</h3>
+              <label>
+                분류
+                <select id="category">
+                  <option>기업분석</option>
+                  <option>산업분석</option>
+                  <option>매매일지</option>
+                </select>
+              </label>
+              <label>
+                결론
+                <select id="stance">
+                  <option>관찰</option>
+                  <option>긍정</option>
+                  <option>중립</option>
+                  <option>부정</option>
+                  <option>보류</option>
+                </select>
+              </label>
+              <label>
+                관련 티커
+                <input id="tickers" type="text" placeholder="NVDA, MSFT, 005930" />
+              </label>
+              <label class="publish-toggle">
+                <input id="published" type="checkbox" />
+                <span>공개 글로 게시</span>
+              </label>
+              <div class="editor-actions stacked">
+                <button class="button primary" type="submit">저장</button>
+                <button class="button secondary" id="previewButton" type="button">미리보기</button>
+                <button class="button danger" id="deleteButton" type="button" disabled>삭제</button>
+              </div>
+              <span id="saveStatus" role="status"></span>
+            </aside>
+          </div>
+        </form>
+      </section>
+
+      <section class="section library-section" id="library" aria-labelledby="library-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">My Archive</p>
+            <h2 id="library-title">내가 작성한 글</h2>
+          </div>
+        </div>
+
+        <div class="filters">
+          <input id="mySearch" type="search" placeholder="내 글 검색" />
+          <select id="myCategory">
+            <option value="all">전체 분류</option>
+            <option>기업분석</option>
+            <option>산업분석</option>
+            <option>매매일지</option>
+          </select>
+          <select id="myStance">
+            <option value="all">전체 결론</option>
+            <option>관찰</option>
+            <option>긍정</option>
+            <option>중립</option>
+            <option>부정</option>
+            <option>보류</option>
+          </select>
+        </div>
+
+        <div class="post-list" id="myList"></div>
+        <article class="reader" id="myReader"></article>
+      </section>
+    </main>
+
+    <dialog class="preview-modal" id="previewModal">
+      <article class="reader modal-reader" id="previewContent"></article>
+      <button class="button primary" id="closePreviewButton" type="button">닫기</button>
+    </dialog>
+
+    <footer class="site-footer">
+      <span>© 2026 투자자의 회상</span>
+      <span>판단의 이유와 결과를 함께 남기는 투자 기록실</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>배포와 도메인 관리 · 투자자의 회상</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">N</span>
+        <span>투자자의 회상</span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="index.html#public">공개 글</a>
+        <a href="index.html#auth">로그인</a>
+        <a href="index.html#write">작성</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section deploy-hero">
+        <p class="eyebrow">Deploy</p>
+        <h1>로그인 기반 Node 앱으로 배포하세요</h1>
+        <p>
+          이 사이트는 회원가입, 로그인 세션, 사용자별 글 저장을 처리하기 위해
+          Node 서버가 필요합니다. 모든 사람이 사용할 수 있게 하려면 공개 호스팅에
+          배포하고 도메인 DNS를 연결해야 합니다.
+        </p>
+      </section>
+
+      <section class="section process deploy-guide" aria-labelledby="deploy-title">
+        <div>
+          <p class="eyebrow">Recommended</p>
+          <h2 id="deploy-title">운영 배포 흐름</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <strong>1. 서버 호스팅 선택</strong>
+            <span>Render, Railway, Fly.io, VPS처럼 Node 서버를 계속 실행할 수 있는 곳을 선택합니다.</span>
+          </article>
+          <article>
+            <strong>2. 시작 명령 설정</strong>
+            <span>프로젝트 루트를 `outputs`로 두고 `node server.js`를 실행합니다.</span>
+          </article>
+          <article>
+            <strong>3. 도메인 연결</strong>
+            <span>호스팅 서비스가 제공하는 CNAME 또는 A 레코드를 도메인 DNS에 입력합니다.</span>
+          </article>
+          <article>
+            <strong>4. 데이터 보존</strong>
+            <span>`DATA_DIR/db.json`이 지워지지 않도록 영구 디스크나 볼륨을 연결합니다.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section library-section">
+        <div class="reader visible">
+          <h3>운영 전 확인할 것</h3>
+          <h4>초기 관리자 계정</h4>
+          <p>개발용으로 `admin@example.com` / `password123` 계정이 자동 생성됩니다. 공개 배포 전에는 새 계정을 만들고 데모 계정은 삭제하거나 비밀번호를 바꾸는 편이 좋습니다.</p>
+          <h4>보안 메모</h4>
+          <p>비밀번호는 PBKDF2 해시로 저장되고 세션 쿠키는 HttpOnly로 설정됩니다. 그래도 실운영에서는 HTTPS, 주기적 백업, 영구 데이터 저장소가 필요합니다.</p>
+          <h4>도메인 DNS</h4>
+          <p>`www`는 보통 CNAME으로 호스팅 기본 주소에 연결하고, 루트 도메인은 호스팅 업체가 안내하는 A 또는 ALIAS/ANAME 값을 사용합니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="index.html">사이트로 돌아가기</a>
+      <span>로그인 기능은 서버 실행 상태에서만 동작합니다.</span>
+    </footer>
+  </body>
+</html>
